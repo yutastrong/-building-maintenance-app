@@ -178,25 +178,6 @@ function App() {
     setShootingPhoto(null);
   };
 
-    setProjects((currentProjects) =>
-      currentProjects.map((project) => {
-        if (project.id !== selectedProject.id) return project;
-
-        return {
-          ...project,
-          photos: project.photos.map((photo) =>
-            photo.id === shootingPhoto.id
-              ? { ...photo, done: true, image: capturedImage }
-              : photo
-          ),
-        };
-      })
-    );
-
-    setCapturedPhoto(false);
-    setShootingPhoto(null);
-  };
-
   if (isAddingProject) {
     return (
       <div className="app">
