@@ -79,8 +79,6 @@ function App() {
   const [isAddingProject, setIsAddingProject] = useState(false);
   const [newSiteName, setNewSiteName] = useState("");
   const [newProjectName, setNewProjectName] = useState("");
-  const [newMembers, setNewMembers] = useState("");
-  const [newCar, setNewCar] = useState("");
   const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
   const [selectedCar, setSelectedCar] = useState("");
   const [editingProjectId, setEditingProjectId] = useState<number | null>(null);
@@ -137,9 +135,6 @@ function App() {
     ? projects.filter((project) => project.date === "2024-05-14")
     : projects.filter((project) => project.date === selectedDate);
 
-  const todayProjects = projects.filter(
-    (project) => project.date === "2024-05-14"
-  );
 
   const saveCapturedPhoto = () => {
     if (!selectedProject || !shootingPhoto) return;
@@ -262,8 +257,6 @@ function App() {
   
                 setNewSiteName("");
                 setNewProjectName("");
-                setNewMembers("");
-                setNewCar("");
                 setIsAddingProject(false);
               }}
             >
