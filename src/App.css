@@ -288,14 +288,13 @@ button {
 .digitalBoard {
   position: absolute;
   right: -64px;
-  bottom: 120px;
+  bottom: 40px;
   width: 260px;
   height: 170px;
-  z-index: 5;
   background: #0D572A;
   color: white;
   padding: 18px;
-  border: none;
+  z-index: 5;
   transform: rotate(90deg);
   transform-origin: center;
 }

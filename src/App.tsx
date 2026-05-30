@@ -172,7 +172,21 @@ function App() {
 
     context.fillStyle = "#0D572A";
     context.fillRect(boardX, boardY, boardW, boardH);
+    context.strokeStyle = "white";
+    context.lineWidth = 4;
+    context.strokeRect(boardX, boardY, boardW, boardH);
 
+    context.lineWidth = 2;
+
+    context.beginPath();
+    context.moveTo(boardX + 20, boardY + 60);
+    context.lineTo(boardX + boardW - 20, boardY + 60);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(boardX + 20, boardY + 120);
+    context.lineTo(boardX + boardW - 20, boardY + 120);
+    context.stroke();
     context.fillStyle = "white";
     context.font = "bold 20px sans-serif";
 
