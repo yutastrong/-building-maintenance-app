@@ -293,7 +293,7 @@ button {
   height: 170px;
   background: #0D572A;
   color: white;
-  padding: 18px;
+  padding: 10px;
   z-index: 5;
   transform: rotate(90deg);
   transform-origin: center;
