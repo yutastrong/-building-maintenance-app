@@ -137,72 +137,19 @@ function App() {
     ? projects.filter((project) => project.date === "2024-05-14")
     : projects.filter((project) => project.date === selectedDate);
 
-    const takePhoto = () => {
-      if (
-        !videoRef.current ||
-        !canvasRef.current ||
-        !selectedProject ||
-        !shootingPhoto
-      ) {
-        return;
-      }
-  
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-  
-    canvas.width = video.videoHeight;
-    canvas.height = video.videoWidth;
-
-    const context = canvas.getContext("2d");
-
-    if (!context) return;
-
-    context.save();
-    context.translate(canvas.width / 2, canvas.height / 2);
-    context.rotate(-Math.PI / 2);
-    context.drawImage(
-      video,
-      -video.videoWidth / 2,
-      -video.videoHeight / 2
-    );
-    context.restore();
-    context.fillStyle = "#0D572A";
-    const boardW = canvas.width * 0.38;
-    const boardH = canvas.height * 0.28;
-    const boardX = canvas.width - boardW - 15;
-    const boardY = canvas.height - boardH - 15;
-
-    context.fillStyle = "#0D572A";
-    context.fillRect(boardX, boardY, boardW, boardH);
-    context.strokeStyle = "white";
-    context.lineWidth = 1.2;
-    context.strokeRect(boardX, boardY, boardW, boardH);
-
-    context.lineWidth = 2;
-
-    context.beginPath();
-    context.moveTo(boardX + 20, boardY + 60);
-    context.lineTo(boardX + boardW - 20, boardY + 60);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(boardX + 20, boardY + 120);
-    context.lineTo(boardX + boardW - 20, boardY + 120);
-    context.stroke();
-    context.fillStyle = "white";
-    context.font = "bold 14px sans-serif";
-
-    context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 24, boardY + 48);
-    context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 24, boardY + 92);
-    context.fillText(`作業日 ${selectedProject.date}`, boardX + 24, boardY + 118);
-
-    context.font = "bold 20px sans-serif";
-    context.fillText(shootingPhoto.name, boardX + 18, boardY + 160);
-    const image = canvas.toDataURL("image/jpeg", 0.9);
-  
-    setCapturedImage(image);
-    setCapturedPhoto(true);
-  };
+    const takePhoto = async () => {
+      if (!captureRef.current) return;
+    
+      const canvas = await html2canvas(captureRef.current, {
+        scale: 3,
+        useCORS: true,
+      });
+    
+      const image = canvas.toDataURL("image/jpeg", 0.95);
+    
+      setCapturedImage(image);
+      setCapturedPhoto(true);
+    };
 
   const saveCapturedPhoto = () => {
     if (!selectedProject || !shootingPhoto || !capturedImage) return;
