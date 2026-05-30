@@ -285,18 +285,6 @@ button {
   overflow: hidden;
 }
 
-.cameraScreen .cameraPreview {
-  aspect-ratio: 4 / 3;
-  height: auto;
-  margin: 24px;
-  border-radius: 18px;
-}
-
-.cameraScreen .cameraVideo {
-  object-fit: contain;
-  background: #111;
-}
-
 .digitalBoard {
   position: absolute;
   right: 18px;
@@ -694,4 +682,20 @@ button {
 .cameraBottom {
   position: relative;
   z-index: 3;
+}
+
+.confirmPreview {
+  width: calc(100% - 32px);
+  aspect-ratio: 4 / 3;
+  margin: 24px auto;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111;
+}
+
+.confirmImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }

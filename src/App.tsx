@@ -452,11 +452,11 @@ if (editingProject) {
           <button onClick={() => setCapturedPhoto(false)}>←戻る</button>
         </div>
 
-        <div className="cameraPreview">
+        <div className="confirmPreview">
           <img
             src={capturedImage}
             alt=""
-            className="cameraVideo"
+            className="confirmImage"
           />
         </div>
 
