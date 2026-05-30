@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import jsPDF from "jspdf";
 
 type PhotoItem = {
   id: number;
@@ -86,6 +87,8 @@ function App() {
   const [editMembers, setEditMembers] = useState<string[]>([]);
   const [editCar, setEditCar] = useState("");
   const [capturedImage, setCapturedImage] = useState("");
+  const [isReportPreview, setIsReportPreview] = useState(false);
+  const reportRef = useRef<HTMLDivElement | null>(null);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -396,6 +399,70 @@ if (editingProject) {
   );
 }
 
+if (isReportPreview && selectedProject) {
+  const completedPhotos = selectedProject.photos.filter((photo) => photo.image);
+
+  const downloadPdf = async () => {
+    if (!reportRef.current) return;
+
+    const canvas = await html2canvas(reportRef.current, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    const image = canvas.toDataURL("image/jpeg", 0.95);
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    pdf.addImage(image, "JPEG", 0, 0, 210, 297);
+    pdf.save(`${selectedProject.siteName}_報告書.pdf`);
+  };
+
+  return (
+    <div className="app">
+      <header className="detailHeader">
+        <button onClick={() => setIsReportPreview(false)}>←戻る</button>
+        <div>
+          <h1>PDFプレビュー</h1>
+          <p>{selectedProject.siteName}</p>
+        </div>
+      </header>
+
+      <main className="content">
+        <div className="reportPreviewWrap">
+          <div className="reportPage" ref={reportRef}>
+            <div className="reportHeader">
+              <h1>作業報告書</h1>
+              <p>現場名：{selectedProject.siteName}</p>
+              <p>案件名：{selectedProject.projectName}</p>
+              <p>作業日：{selectedProject.date}</p>
+            </div>
+
+            <div className="reportPhotoList">
+              {completedPhotos.map((photo, index) => (
+                <div className="reportRow" key={photo.id}>
+                  <div className="reportPhotoBox">
+                    <img src={photo.image} />
+                  </div>
+
+                  <div className="reportInfoBox">
+                    <p>No. {index + 1}</p>
+                    <p>場所：</p>
+                    <p>内容：{photo.name}</p>
+                    <p>備考：</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <button className="downloadPdfButton" onClick={downloadPdf}>
+          PDF出力
+        </button>
+      </main>
+    </div>
+  );
+}
   if (previewPhoto) {
     return (
       <div className="previewScreen">
@@ -567,6 +634,12 @@ if (editingProject) {
             }}
           >
             ＋ 項目追加
+          </button>
+          <button
+            className="pdfPreviewButton"
+            onClick={() => setIsReportPreview(true)}
+          >
+            PDFプレビュー
           </button>
         </main>
       </div>
