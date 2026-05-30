@@ -429,29 +429,31 @@ if (isReportPreview && selectedProject) {
 
       <main className="content">
         <div className="reportPreviewWrap">
-          <div className="reportPage" ref={reportRef}>
-            <div className="reportHeader">
-              <h1>作業報告書</h1>
-              <p>現場名：{selectedProject.siteName}</p>
-              <p>案件名：{selectedProject.projectName}</p>
-              <p>作業日：{selectedProject.date}</p>
-            </div>
+          <div className="reportPageViewoport">
+            <div className="reportPage" ref={reportRef}>
+              <div className="reportHeader">
+                <h1>作業報告書</h1>
+                <p>現場名：{selectedProject.siteName}</p>
+                <p>案件名：{selectedProject.projectName}</p>
+                <p>作業日：{selectedProject.date}</p>
+              </div>
 
-            <div className="reportPhotoList">
-              {completedPhotos.map((photo, index) => (
-                <div className="reportRow" key={photo.id}>
-                  <div className="reportPhotoBox">
-                    <img src={photo.image} />
-                  </div>
+              <div className="reportPhotoList">
+                {completedPhotos.map((photo, index) => (
+                  <div className="reportRow" key={photo.id}>
+                    <div className="reportPhotoBox">
+                      <img src={photo.image} />
+                    </div>
 
-                  <div className="reportInfoBox">
-                    <p>No. {index + 1}</p>
-                    <p>場所：</p>
-                    <p>内容：{photo.name}</p>
-                    <p>備考：</p>
+                    <div className="reportInfoBox">
+                      <p>No. {index + 1}</p>
+                      <p>場所：</p>
+                      <p>内容：{photo.name}</p>
+                      <p>備考：</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
