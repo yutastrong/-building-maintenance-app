@@ -421,13 +421,15 @@ button {
 
 .previewHeader {
   padding: 18px;
+  text-align: left;
 }
 
 .previewHeader button {
   background: none;
   border: none;
   color: white;
-  font-size: 28px;
+  font-size: 20px;
+  padding-top: 25px;
 }
 
 .previewImageWrap {
@@ -447,10 +449,11 @@ button {
 .previewInfo {
   color: white;
   padding: 24px;
+  text-align: left;
 }
 
 .previewInfo h2 {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 8px;
 }
 
@@ -826,4 +829,28 @@ button {
   font-size: 16px;
   resize: vertical;
   box-sizing: border-box;
+}
+
+.monthSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.monthSwitcher button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.monthSwitcher p {
+  margin: 0;
+  min-width: 110px;
+  text-align: center;
 }

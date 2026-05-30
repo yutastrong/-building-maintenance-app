@@ -72,6 +72,8 @@ function App() {
     return savedProjects ? JSON.parse(savedProjects) : initialProjects;
   });
   const [activeTab, setActiveTab] = useState<"today" | "calendar">("calendar");
+  const [currentYear, setCurrentYear] = useState(2024);
+  const [currentMonth, setCurrentMonth] = useState(5);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
   const [shootingPhoto, setShootingPhoto] = useState<PhotoItem | null>(null);
   const [capturedPhoto, setCapturedPhoto] = useState(false);
@@ -89,8 +91,8 @@ function App() {
   const [editCar, setEditCar] = useState("");
   const [capturedImage, setCapturedImage] = useState("");
   const [isReportPreview, setIsReportPreview] = useState(false);
-  const reportRef = useRef<HTMLDivElement | null>(null);
 
+  const reportRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -134,11 +136,57 @@ function App() {
     };
   }, [selectedProject, shootingPhoto, capturedPhoto]);
 
+  const firstDayOfMonth = new Date(currentYear, currentMonth - 1, 1);
+  const lastDayOfMonth = new Date(currentYear, currentMonth, 0);
+
+  const daysInMonth = lastDayOfMonth.getDate();
+  const startDay = firstDayOfMonth.getDay();
+
+  const today = new Date();
+
+  const todayDate = `${today.getFullYear()}-${String(
+    today.getMonth() + 1
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+  const calendarCells = Array.from(
+    { length: Math.ceil((startDay + daysInMonth) / 7) * 7 },
+    (_, index) => {
+      const day = index - startDay + 1;
+
+      if (day < 1 || day > daysInMonth) {
+        return null;
+      }
+
+      const date = `${currentYear}-${String(currentMonth).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+      return {
+        day,
+        date,
+      };
+    }
+  );
+
+  const goPrevMonth = () => {
+    if (currentMonth === 1) {
+      setCurrentYear(currentYear - 1);
+      setCurrentMonth(12);
+    } else {
+      setCurrentMonth(currentMonth - 1);
+    }
+  };
   
+  const goNextMonth = () => {
+    if (currentMonth === 12) {
+      setCurrentYear(currentYear + 1);
+      setCurrentMonth(1);
+    } else {
+      setCurrentMonth(currentMonth + 1);
+    }
+  };
 
   const displayedProjects =
   selectedDate === null
-    ? projects.filter((project) => project.date === "2024-05-14")
+    ? projects.filter((project) => project.date === todayDate)
     : projects.filter((project) => project.date === selectedDate);
 
     const takePhoto = async () => {
@@ -757,7 +805,13 @@ if (isReportPreview && selectedProject) {
             : "予定表"}
         </h1>
 
-        {activeTab === "calendar" && <p>2024年5月</p>}
+        {activeTab === "calendar" && (
+          <div className="monthSwitcher">
+            <button onClick={goPrevMonth}>‹</button>
+            <p>{currentYear}年{currentMonth}月</p>
+            <button onClick={goNextMonth}>›</button>
+          </div>
+        )}
       </header>
 
       <main className="content">
@@ -788,39 +842,41 @@ if (isReportPreview && selectedProject) {
             </div>
 
             <div className="calendarGrid">
-              {Array.from({ length: 35 }, (_, index) => {
-                const day = index - 2;
-                const date = `2024-05-${String(day).padStart(2, "0")}`;
-                const dayProjects = projects.filter((project) => project.date === date);
+            {calendarCells.map((cell, index) => {
+              const dayProjects = cell
+                ? projects.filter((project) => project.date === cell.date)
+                : [];
 
-                return (
-                  <button
-                    key={index}
-                    className={`calendarDay ${day === 14 ? "today" : ""}`}
-                    onClick={() => {
-                      if (day > 0 && day <= 31) {
-                        const clickedDate = `2024-05-${String(day).padStart(2, "0")}`;
-                        setSelectedDate(clickedDate);
-                        setActiveTab("today");
-                      }
-                    }}
-                  >
-                    {day > 0 && day <= 31 && (
-                      <>
-                        <span className="dayNumber">{day}</span>
-                        {dayProjects.map((project) => (
-                          <button
-                            key={project.id}
-                            className={`calendarEvent ${project.isMine ? "mineEvent" : ""}`}
-                          >
-                            {project.siteName}
-                          </button>
-                        ))}
-                      </>
-                    )}
-                  </button>
-                );
-              })}
+              return (
+                <button
+                  key={index}
+                  className={`calendarDay ${
+                    cell?.date === todayDate ? "today" : ""
+                  }`}
+                  onClick={() => {
+                    if (!cell) return;
+
+                    setSelectedDate(cell.date);
+                    setActiveTab("today");
+                  }}
+                >
+                  {cell && (
+                    <>
+                      <span className="dayNumber">{cell.day}</span>
+
+                      {dayProjects.map((project) => (
+                        <div
+                          key={project.id}
+                          className={`calendarEvent ${project.isMine ? "mineEvent" : ""}`}
+                        >
+                          {project.siteName}
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </button>
+              );
+            })}
             </div>
           </section>
         )}
