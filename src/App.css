@@ -290,9 +290,10 @@ button {
   right: 18px;
   bottom: 24px;
   width: 220px;
-  background: rgba(0, 0, 0, 0.82);
+  background: #0D572A;
   border: 2px solid white;
   padding: 10px;
+  transform: rotate(90deg);
 }
 
 .digitalBoard div {

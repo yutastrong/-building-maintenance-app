@@ -164,7 +164,7 @@ function App() {
       -video.videoHeight / 2
     );
     context.restore();
-    context.fillStyle = "rgba(65,120,35,0.82)";
+    context.fillStyle = "#0D572A";
     context.fillRect(40, canvas.height - 260, canvas.width - 80, 220);
     context.fillStyle = "white";
     context.font = "bold 28px sans-serif";
