@@ -165,7 +165,12 @@ function App() {
     );
     context.restore();
     context.fillStyle = "#0D572A";
-    context.fillRect(40, canvas.height - 260, canvas.width - 80, 220);
+    context.fillRect(
+      canvas.width * 0.07,
+      canvas.height - 260,
+      canvas.width * 0.86,
+      220
+    );
     context.fillStyle = "white";
     context.font = "bold 28px sans-serif";
     context.fillText(
