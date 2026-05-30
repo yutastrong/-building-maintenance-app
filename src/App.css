@@ -770,9 +770,12 @@ button {
 
 .reportRow {
   display: grid;
-  grid-template-columns: 1fr 180px;
+  grid-template-columns: 2fr 1fr;
+  min-height: 180px;
   border: 1px solid #111;
   min-height: 260px;
+  grid-template-columns: 2fr 1fr;
+  min-height: 180px;
 }
 
 .reportPhotoBox {
@@ -781,12 +784,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 180px;
+  overflow: hidden;
 }
 
 .reportPhotoBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .reportInfoBox {
