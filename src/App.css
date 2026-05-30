@@ -1,0 +1,685 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f4f5f2;
+  color: #1f2a24;
+}
+
+button {
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  padding-bottom: 88px;
+  background: #f4f5f2;
+}
+
+.backToCalendarButton {
+  position: absolute;
+  left: 16px;
+  top: 38px;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+.appHeader {
+  background: linear-gradient(180deg, #6f9d45, #5f8f3b);
+  color: white;
+  padding: 18px 20px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.appHeader h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.appHeader p {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.content {
+  padding: 14px;
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 13px;
+}
+
+.projectCard {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+  text-align: left;
+}
+
+.projectCard.mine {
+  border-left: none;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.cardHeader h2 {
+  font-size: 20px;
+  color: #0f5d48;
+  line-height: 1.35;
+}
+
+.cardHeader span {
+  font-size: 32px;
+  color: #777;
+  line-height: 1;
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  column-gap: 10px;
+  align-items: baseline;
+}
+
+.label {
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.value {
+  color: #222;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.bottomNav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  border-top: 1px solid #e5e5e5;
+  background: white;
+  z-index: 100;
+}
+
+.bottomNav button {
+  flex: 1;
+  border: none;
+  background: white;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  border-right: 1px solid #eeeeee;
+}
+
+.bottomNav button:last-child {
+  border-right: none;
+}
+
+.bottomNav button.active {
+  color: #5f8f3b;
+  background: #f2faed;
+}
+.detailHeader {
+  background: linear-gradient(180deg, #6f9d45, #5f8f3b);
+  color: white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.detailHeader button {
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.detailHeader h1 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.detailHeader p {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.photoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.photoItem {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+}
+
+.photoLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 2px solid #c7cec1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.checkCircle.done {
+  background: #5f8f3b;
+  border-color: #5f8f3b;
+}
+
+.photoItem h3 {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.photoItem p {
+  color: #777;
+  font-size: 13px;
+  text-align: left;
+}
+
+.photoItem img,
+.emptyThumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.emptyThumb {
+  background: #ecefe8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-weight: bold;
+}
+
+.cameraScreen {
+  min-height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.cameraTop {
+  height: 64px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cameraTop button {
+  color: white;
+  font-size: 32px;
+}
+
+.cameraPreview {
+  flex: 1;
+  margin: 0 16px;
+  border-radius: 14px;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.08)
+    ),
+    url("https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=900");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.digitalBoard {
+  position: absolute;
+  right: 18px;
+  bottom: 24px;
+  width: 220px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.digitalBoard div {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 4px 0;
+}
+
+.digitalBoard span {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.digitalBoard strong {
+  font-size: 12px;
+}
+
+.digitalBoard h2 {
+  text-align: center;
+  font-size: 24px;
+  margin: 14px 0;
+}
+
+.digitalBoard p {
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  padding-top: 6px;
+}
+
+.cameraBottom {
+  height: 110px;
+  padding: 20px 34px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.galleryButton,
+.settingButton {
+  color: white;
+  font-size: 28px;
+}
+
+.shutterButton {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: white;
+  color: white;
+  border: 6px solid #ddd;
+}
+
+.confirmButtons {
+  display: flex;
+  gap: 12px;
+  padding: 18px 20px 24px;
+  background: #111;
+}
+
+.retakeButton,
+.okButton {
+  flex: 1;
+  height: 52px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.retakeButton {
+  background: #eeeeee;
+  color: #222;
+}
+
+.okButton {
+  background: #6f9d45;
+  color: white;
+}
+
+.photoProgressCard {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+}
+
+.photoProgressText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.photoProgressText span {
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.photoProgressText strong {
+  color: #0f5d48;
+  font-size: 16px;
+}
+
+.photoProgressBar {
+  height: 10px;
+  background: #e5e9e1;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.photoProgressFill {
+  height: 100%;
+  background: #5f8f3b;
+  border-radius: 999px;
+}
+
+.previewScreen {
+  min-height: 100vh;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+.previewHeader {
+  padding: 18px;
+}
+
+.previewHeader button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+}
+
+.previewImageWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.previewImage {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.previewInfo {
+  color: white;
+  padding: 24px;
+}
+
+.previewInfo h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.previewInfo p {
+  color: #bbb;
+}
+
+.calendarCard {
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calendarWeek {
+  color: #777;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.calendarDay {
+  min-height: 100px;
+  border: 1px solid #edf0eb;
+  padding: 4px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  padding-top: 28px;
+}
+
+.calendarDay.today {
+  background: #f0f7eb;
+}
+
+.dayNumber {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.calendarEvent {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  margin-top: 4px;
+
+  background: #dfead7;
+  color: #234b16;
+
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mineEvent {
+  background: #78b442;
+  color: white;
+}
+
+.emptyProjectCard {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 18px;
+  text-align: center;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+  margin-bottom: 14px;
+}
+
+.emptyProjectCard p {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.emptyProjectCard span {
+  font-size: 13px;
+  color: #777;
+}
+
+.addProjectButton {
+  width: 100%;
+  height: 54px;
+  border-radius: 16px;
+  background: #5f8f3b;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.12);
+}
+
+.addPhotoButton {
+  width: 100%;
+  margin-top: 16px;
+  height: 56px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: #5f8f3b;
+  color: white;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.formCard {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid #e2e5df;
+  box-shadow: 0 3px 10px rgba(31, 42, 36, 0.08);
+}
+
+.formCard label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.formCard input {
+  width: 100%;
+  margin-top: 8px;
+  height: 48px;
+  border: 1px solid #d9ddd5;
+  border-radius: 12px;
+  padding: 0 12px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #555;
+}
+
+.saveProjectButton {
+  width: 100%;
+  height: 54px;
+  border-radius: 16px;
+  background: #5f8f3b;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.memberSelector,
+.carSelector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.memberChip,
+.carChip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #d7dccf;
+  background: white;
+  font-size: 14px;
+  color: #555;
+}
+
+.memberChip.active,
+.carChip.active {
+  background: #5f8f3b;
+  color: white;
+  border-color: #5f8f3b;
+}
+
+.editProjectButton {
+  background: #eef4ea;
+  color: #0f5d48;
+  border: 1px solid #d8e2d1;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cameraVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cameraPreview {
+  position: relative;
+  overflow: hidden;
+}
+
+.cameraVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.digitalBoard {
+  z-index: 2;
+}
+
+.cameraTop,
+.cameraBottom {
+  position: relative;
+  z-index: 3;
+}
