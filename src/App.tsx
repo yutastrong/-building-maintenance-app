@@ -8,6 +8,7 @@ type PhotoItem = {
   name: string;
   done: boolean;
   image?: string;
+  comment?: string;
 };
 
 type Project = {
@@ -449,7 +450,7 @@ if (isReportPreview && selectedProject) {
                       <p>No. {index + 1}</p>
                       <p>場所：</p>
                       <p>内容：{photo.name}</p>
-                      <p>備考：</p>
+                      <p>備考：{photo.comment ?? ""}</p>
                     </div>
                   </div>
                 ))}
@@ -479,6 +480,38 @@ if (isReportPreview && selectedProject) {
         <div className="previewInfo">
           <h2>{previewPhoto.name}</h2>
           <p>写真を拡大確認できます</p>
+
+          <label className="commentLabel">
+            コメント
+            <textarea
+              className="photoCommentInput"
+              value={previewPhoto.comment ?? ""}
+              placeholder="例：清掃後、汚れ除去済み"
+              onChange={(e) => {
+                const newComment = e.target.value;
+
+                setPreviewPhoto({
+                  ...previewPhoto,
+                  comment: newComment,
+                });
+
+                setProjects((currentProjects) =>
+                  currentProjects.map((project) => {
+                    if (project.id !== selectedProjectId) return project;
+
+                    return {
+                      ...project,
+                      photos: project.photos.map((photo) =>
+                        photo.id === previewPhoto.id
+                          ? { ...photo, comment: newComment }
+                          : photo
+                      ),
+                    };
+                  })
+                );
+              }}
+            />
+          </label>
         </div>
       </div>
     );
@@ -582,7 +615,17 @@ if (isReportPreview && selectedProject) {
 
           <section className="photoList">
             {selectedProject.photos.map((photo) => (
-              <button key={photo.id} className="photoItem" onClick={() => setShootingPhoto(photo)}>
+              <button
+                key={photo.id}
+                className="photoItem"
+                onClick={() => {
+                  if (photo.done && photo.image) {
+                    setPreviewPhoto(photo);
+                  } else {
+                    setShootingPhoto(photo);
+                  }
+                }}
+              >
                 <div className="photoLeft">
                   <div className={`checkCircle ${photo.done ? "done" : ""}`}>
                     {photo.done ? "✓" : ""}
