@@ -135,27 +135,48 @@ function App() {
     ? projects.filter((project) => project.date === "2024-05-14")
     : projects.filter((project) => project.date === selectedDate);
 
+  const takePhoto = () => {
+    if (!videoRef.current || !canvasRef.current) return;
+  
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+  
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+  
+    const context = canvas.getContext("2d");
+  
+    if (!context) return;
+  
+    context.drawImage(video, 0, 0);
+    const image = canvas.toDataURL("image/jpeg", 0.9);
+  
+    setCapturedImage(image);
+    setCapturedPhoto(true);
+  };
 
   const saveCapturedPhoto = () => {
-    if (!selectedProject || !shootingPhoto) return;
-
-    let capturedImage = "";
-
-    if (videoRef.current && canvasRef.current) {
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-
-      const context = canvas.getContext("2d");
-
-      if (context) {
-        context.drawImage(video, 0, 0);
-        capturedImage = canvas.toDataURL("image/jpeg");
-        setCapturedImage(capturedImage);
-      }
-    }
+    if (!selectedProject || !shootingPhoto || !capturedImage) return;
+  
+    setProjects((currentProjects) =>
+      currentProjects.map((project) => {
+        if (project.id !== selectedProject.id) return project;
+  
+        return {
+          ...project,
+          photos: project.photos.map((photo) =>
+            photo.id === shootingPhoto.id
+              ? { ...photo, done: true, image: capturedImage }
+              : photo
+          ),
+        };
+      })
+    );
+  
+    setCapturedImage("");
+    setCapturedPhoto(false);
+    setShootingPhoto(null);
+  };
 
     setProjects((currentProjects) =>
       currentProjects.map((project) => {
@@ -479,7 +500,7 @@ if (editingProject) {
 
         <div className="cameraBottom">
           <button className="galleryButton">□</button>
-          <button className="shutterButton" onClick={() => setCapturedPhoto(true)}>
+          <button className="shutterButton" onClick={takePhoto}>
             ●
           </button>
           <button className="settingButton">⚙</button>
