@@ -149,6 +149,27 @@ function App() {
     if (!context) return;
   
     context.drawImage(video, 0, 0);
+    context.fillStyle = "rgba(0,0,0,0.6)";
+    context.fillRect(40, canvas.height - 260, canvas.width - 80, 220);
+    context.fillStyle = "white";
+    context.font = "bold 40px sans-serif";
+    context.fillText(
+      `現場名 ${selectedProject.siteName}`,
+      70,
+      canvas.height - 190
+    );
+    
+    context.fillText(
+      `案件名 ${selectedProject.projectName}`,
+      70,
+      canvas.height - 130
+    );
+    
+    context.fillText(
+      shootingPhoto.name,
+      70,
+      canvas.height - 70
+    );
     const image = canvas.toDataURL("image/jpeg", 0.9);
   
     setCapturedImage(image);
