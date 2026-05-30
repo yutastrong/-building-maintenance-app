@@ -738,68 +738,48 @@ button {
   min-height: 1123px;
   background: white;
   color: #111;
-  padding: 40px;
-  transform: scale(0.75);
+  padding: 36px 42px;
+  transform: scale(0.72);
   transform-origin: top center;
-  margin-bottom: -220px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  margin-bottom: -260px;
 }
 
 .reportHeader {
-  border-bottom: 2px solid #111;
-  padding-bottom: 18px;
-  margin-bottom: 24px;
-}
-
-.reportHeader h1 {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.reportHeader p {
-  font-size: 18px;
-  margin-bottom: 8px;
+  display: none;
 }
 
 .reportPhotoList {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
 .reportRow {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  min-height: 180px;
-  border: 1px solid #111;
-  min-height: 260px;
-  grid-template-columns: 2fr 1fr;
-  min-height: 180px;
+  grid-template-columns: 1fr 150px;
+  border: none;
+  min-height: 245px;
 }
 
 .reportPhotoBox {
-  border-right: 1px solid #111;
+  border: none;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-  overflow: hidden;
+  height: 230px;
 }
 
 .reportPhotoBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .reportInfoBox {
-  padding: 12px;
-  font-size: 16px;
+  border-left: none;
+  padding: 4px 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .reportInfoBox p {
-  margin-bottom: 18px;
+  border-bottom: 1px solid #999;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
 }
