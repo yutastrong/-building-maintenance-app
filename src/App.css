@@ -704,3 +704,17 @@ button {
   object-fit: contain;
   display: block;
 }
+
+.previewImageWrap {
+  width: calc(100% - 32px);
+  aspect-ratio: 4 / 3;
+  margin: 24px auto;
+  background: #111;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
