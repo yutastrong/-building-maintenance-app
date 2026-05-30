@@ -756,7 +756,17 @@ button {
 }
 
 .reportHeader {
-  display: none;
+  display: block;
+}
+
+.reportHeader h1 {
+  color: #333;
+  font-size: 25px;
+}
+
+.reportHeader p {
+  color: #333;
+  font-size: 15px;
 }
 
 .reportPhotoList {
@@ -773,7 +783,7 @@ button {
 
 .reportPhotoBox {
   width: 520px;
-  height: 190px;
+  height: 300px;
   padding: 0;
   background: white;
   display: flex;
@@ -795,4 +805,5 @@ button {
   padding: 4px 0 0 12px;
   font-size: 13px;
   line-height: 1.6;
+  text-align: left;
 }
