@@ -285,6 +285,18 @@ button {
   overflow: hidden;
 }
 
+.cameraScreen .cameraPreview {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  margin: 24px;
+  border-radius: 18px;
+}
+
+.cameraScreen .cameraVideo {
+  object-fit: contain;
+  background: #111;
+}
+
 .digitalBoard {
   position: absolute;
   right: 18px;

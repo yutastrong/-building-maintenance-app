@@ -458,18 +458,6 @@ if (editingProject) {
             alt=""
             className="cameraVideo"
           />
-          <div className="digitalBoard">
-            <div>
-              <span>現場名</span>
-              <strong>{selectedProject.siteName}</strong>
-            </div>
-            <div>
-              <span>案件名</span>
-              <strong>{selectedProject.projectName}</strong>
-            </div>
-            <h2>{shootingPhoto.name}</h2>
-            <p>撮影日 2024.05.14</p>
-          </div>
         </div>
 
         <div className="confirmButtons">
