@@ -62,8 +62,6 @@ const initialProjects: Project[] = [
 
 const STORAGE_KEY = "building-maintenance-projects";
 
-const sampleCapturedImage =
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=600";
 
 function App() {
   const [projects, setProjects] = useState<Project[]>(() => {
