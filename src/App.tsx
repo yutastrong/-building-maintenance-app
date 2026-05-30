@@ -165,22 +165,22 @@ function App() {
     );
     context.restore();
     context.fillStyle = "#0D572A";
-    const boardW = canvas.width * 0.86;
-    const boardH = 180;
-    const boardX = canvas.width * 0.07;
-    const boardY = canvas.height - boardH - 36;
+    const boardW = canvas.width * 0.42;
+    const boardH = canvas.height * 0.34;
+    const boardX = canvas.width - boardW - 40;
+    const boardY = canvas.height - boardH - 40;
 
     context.fillStyle = "#0D572A";
     context.fillRect(boardX, boardY, boardW, boardH);
 
     context.fillStyle = "white";
-    context.font = "bold 24px sans-serif";
+    context.font = "bold 20px sans-serif";
 
-    context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 28, boardY + 48);
-    context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 28, boardY + 96);
+    context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 24, boardY + 48);
+    context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 24, boardY + 92);
 
-    context.font = "bold 30px sans-serif";
-    context.fillText(shootingPhoto.name, boardX + 28, boardY + 148);
+    context.font = "bold 28px sans-serif";
+    context.fillText(shootingPhoto.name, boardX + 24, boardY + 150);
     const image = canvas.toDataURL("image/jpeg", 0.9);
   
     setCapturedImage(image);

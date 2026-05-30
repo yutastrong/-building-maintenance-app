@@ -287,14 +287,17 @@ button {
 
 .digitalBoard {
   position: absolute;
-  left: 7%;
-  right: 7%;
-  bottom: 8%;
+  right: -64px;
+  bottom: 120px;
+  width: 260px;
+  height: 170px;
+  z-index: 5;
   background: #0D572A;
   color: white;
-  padding: 24px 28px;
+  padding: 18px;
   border: none;
-  transform: none;
+  transform: rotate(90deg);
+  transform-origin: center;
 }
 
 .digitalBoard div {
