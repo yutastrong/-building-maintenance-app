@@ -1,3 +1,4 @@
+import html2canvas from "html2canvas";
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
@@ -89,6 +90,7 @@ function App() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const captureRef = useRef<HTMLDivElement | null>(null);
 
   const selectedProject =
   projects.find((project) => project.id === selectedProjectId) ?? null;
@@ -165,8 +167,8 @@ function App() {
     );
     context.restore();
     context.fillStyle = "#0D572A";
-    const boardW = canvas.width * 0.42;
-    const boardH = canvas.height * 0.38;
+    const boardW = canvas.width * 0.38;
+    const boardH = canvas.height * 0.28;
     const boardX = canvas.width - boardW - 15;
     const boardY = canvas.height - boardH - 15;
 
@@ -491,7 +493,7 @@ if (editingProject) {
           <span>⚡</span>
         </div>
 
-        <div className="cameraPreview">
+        <div className="cameraPreview" ref={captureRef}>
           <video
             ref={videoRef}
             autoPlay
