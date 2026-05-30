@@ -148,18 +148,26 @@ function App() {
     const video = videoRef.current;
     const canvas = canvasRef.current;
   
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-  
+    canvas.width = video.videoHeight;
+    canvas.height = video.videoWidth;
+
     const context = canvas.getContext("2d");
-  
+
     if (!context) return;
-  
-    context.drawImage(video, 0, 0);
+
+    context.save();
+    context.translate(canvas.width / 2, canvas.height / 2);
+    context.rotate(Math.PI / 2);
+    context.drawImage(
+      video,
+      -video.videoWidth / 2,
+      -video.videoHeight / 2
+    );
+    context.restore();
     context.fillStyle = "rgba(0,0,0,0.6)";
     context.fillRect(40, canvas.height - 260, canvas.width - 80, 220);
     context.fillStyle = "white";
-    context.font = "bold 40px sans-serif";
+    context.font = "bold 28px sans-serif";
     context.fillText(
       `現場名 ${selectedProject.siteName}`,
       70,
