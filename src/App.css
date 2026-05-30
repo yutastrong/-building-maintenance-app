@@ -287,8 +287,8 @@ button {
 
 .digitalBoard {
   position: absolute;
-  right: -64px;
-  bottom: 40px;
+  right: -110px;
+  bottom: -40px;
   width: 260px;
   height: 170px;
   background: #0D572A;
@@ -297,6 +297,7 @@ button {
   z-index: 5;
   transform: rotate(90deg);
   transform-origin: center;
+  border: 3px solid white;
 }
 
 .digitalBoard div {

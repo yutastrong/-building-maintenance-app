@@ -173,7 +173,7 @@ function App() {
     context.fillStyle = "#0D572A";
     context.fillRect(boardX, boardY, boardW, boardH);
     context.strokeStyle = "white";
-    context.lineWidth = 4;
+    context.lineWidth = 1.2;
     context.strokeRect(boardX, boardY, boardW, boardH);
 
     context.lineWidth = 2;
@@ -188,7 +188,7 @@ function App() {
     context.lineTo(boardX + boardW - 20, boardY + 120);
     context.stroke();
     context.fillStyle = "white";
-    context.font = "bold 20px sans-serif";
+    context.font = "bold 14px sans-serif";
 
     context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 24, boardY + 48);
     context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 24, boardY + 92);
