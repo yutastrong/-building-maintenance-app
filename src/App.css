@@ -752,7 +752,7 @@ button {
   box-sizing: border-box;
 
   transform: scale(0.43);
-  transform-origin: top left;
+  transform-origin: 50% 0;
 }
 
 .reportHeader {
