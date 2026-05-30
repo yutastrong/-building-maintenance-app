@@ -735,7 +735,7 @@ button {
 
 .reportPage {
   width: 794px;
-  min-height: 1123px;
+  height: 1123px;
   background: white;
   color: #111;
   padding: 36px 42px;
