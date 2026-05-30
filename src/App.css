@@ -751,7 +751,7 @@ button {
   padding: 36px 42px;
   box-sizing: border-box;
 
-  transform: scale(calc(min(92vw, 420px) / 794));
+  transform: scale(0.43);
   transform-origin: top left;
 }
 
