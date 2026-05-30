@@ -135,8 +135,15 @@ function App() {
     ? projects.filter((project) => project.date === "2024-05-14")
     : projects.filter((project) => project.date === selectedDate);
 
-  const takePhoto = () => {
-    if (!videoRef.current || !canvasRef.current) return;
+    const takePhoto = () => {
+      if (
+        !videoRef.current ||
+        !canvasRef.current ||
+        !selectedProject ||
+        !shootingPhoto
+      ) {
+        return;
+      }
   
     const video = videoRef.current;
     const canvas = canvasRef.current;
