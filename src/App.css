@@ -727,23 +727,21 @@ button {
 
 .reportPreviewWrap {
   width: 100%;
-  height: 820px;
+  height: 720px;
   overflow: hidden;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: flex-start;
 }
 
 .reportPage {
   width: 794px;
   height: 1123px;
-  min-height: 0;
-  overflow: hidden;
+  transform: scale(0.55);
+  transform-origin: top center;
   background: white;
   color: #111;
   padding: 36px 42px;
-  transform: scale(0.72);
-  transform-origin: top center;
 }
 
 .reportHeader {
