@@ -286,7 +286,6 @@ button {
 }
 
 .digitalBoard {
-  .digitalBoard {
   position: absolute;
   left: 7%;
   right: 7%;
@@ -296,7 +295,6 @@ button {
   padding: 24px 28px;
   border: none;
   transform: none;
-  }
 }
 
 .digitalBoard div {
