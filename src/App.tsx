@@ -89,6 +89,7 @@ function App() {
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const selectedProject =
   projects.find((project) => project.id === selectedProjectId) ?? null;
@@ -139,6 +140,23 @@ function App() {
   const saveCapturedPhoto = () => {
     if (!selectedProject || !shootingPhoto) return;
 
+    let capturedImage = "";
+
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+
+      const context = canvas.getContext("2d");
+
+      if (context) {
+        context.drawImage(video, 0, 0);
+        capturedImage = canvas.toDataURL("image/jpeg");
+      }
+    }
+
     setProjects((currentProjects) =>
       currentProjects.map((project) => {
         if (project.id !== selectedProject.id) return project;
@@ -147,7 +165,7 @@ function App() {
           ...project,
           photos: project.photos.map((photo) =>
             photo.id === shootingPhoto.id
-              ? { ...photo, done: true, image: sampleCapturedImage }
+              ? { ...photo, done: true, image: capturedImage }
               : photo
           ),
         };
@@ -446,7 +464,7 @@ if (editingProject) {
             muted
             className="cameraVideo"
           />
-
+          <canvas ref={canvasRef} style={{ display: "none" }} />
           <div className="digitalBoard">
             <div>
               <span>現場名</span>
