@@ -144,7 +144,18 @@ function App() {
         scale: 3,
         useCORS: true,
       });
-    
+      const rotatedCanvas = document.createElement("canvas");
+      rotatedCanvas.width = canvas.height;
+      rotatedCanvas.height = canvas.width;
+
+      const ctx = rotatedCanvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.translate(rotatedCanvas.width / 2, rotatedCanvas.height / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+
+      const image = rotatedCanvas.toDataURL("image/jpeg", 0.95);
       const image = canvas.toDataURL("image/jpeg", 0.95);
     
       setCapturedImage(image);
