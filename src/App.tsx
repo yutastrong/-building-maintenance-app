@@ -157,14 +157,14 @@ function App() {
 
     context.save();
     context.translate(canvas.width / 2, canvas.height / 2);
-    context.rotate(Math.PI / 2);
+    context.rotate(-Math.PI / 2);
     context.drawImage(
       video,
       -video.videoWidth / 2,
       -video.videoHeight / 2
     );
     context.restore();
-    context.fillStyle = "rgba(0,0,0,0.6)";
+    context.fillStyle = "rgba(65,120,35,0.82)";
     context.fillRect(40, canvas.height - 260, canvas.width - 80, 220);
     context.fillStyle = "white";
     context.font = "bold 28px sans-serif";

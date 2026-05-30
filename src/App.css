@@ -415,7 +415,7 @@ button {
 
 .previewScreen {
   min-height: 100vh;
-  background: #005C08;
+  background: #222;
   display: flex;
   flex-direction: column;
 }
