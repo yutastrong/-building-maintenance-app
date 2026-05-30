@@ -156,7 +156,6 @@ function App() {
       ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
 
       const image = rotatedCanvas.toDataURL("image/jpeg", 0.95);
-      const image = canvas.toDataURL("image/jpeg", 0.95);
     
       setCapturedImage(image);
       setCapturedPhoto(true);
