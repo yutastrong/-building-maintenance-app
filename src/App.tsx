@@ -165,31 +165,20 @@ function App() {
     );
     context.restore();
     context.fillStyle = "#0D572A";
-    context.fillRect(
-      canvas.width * 0.07,
-      canvas.height - 260,
-      canvas.width * 0.86,
-      220
-    );
+    const boardX = canvas.width * 0.07;
+    const boardY = canvas.height - 260;
+    const boardW = canvas.width * 0.86;
+    const boardH = 220;
+
+    context.fillStyle = "#0D572A";
+    context.fillRect(boardX, boardY, boardW, boardH);
+
     context.fillStyle = "white";
     context.font = "bold 28px sans-serif";
-    context.fillText(
-      `現場名 ${selectedProject.siteName}`,
-      70,
-      canvas.height - 190
-    );
-    
-    context.fillText(
-      `案件名 ${selectedProject.projectName}`,
-      70,
-      canvas.height - 130
-    );
-    
-    context.fillText(
-      shootingPhoto.name,
-      70,
-      canvas.height - 70
-    );
+
+    context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 30, boardY + 65);
+    context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 30, boardY + 120);
+    context.fillText(shootingPhoto.name, boardX + 30, boardY + 175);
     const image = canvas.toDataURL("image/jpeg", 0.9);
   
     setCapturedImage(image);
