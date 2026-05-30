@@ -152,7 +152,7 @@ function App() {
       if (!ctx) return;
 
       ctx.translate(rotatedCanvas.width / 2, rotatedCanvas.height / 2);
-      ctx.rotate(Math.PI / 2);
+      ctx.rotate(-Math.PI / 2);
       ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
 
       const image = rotatedCanvas.toDataURL("image/jpeg", 0.95);
