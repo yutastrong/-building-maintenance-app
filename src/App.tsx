@@ -166,7 +166,7 @@ function App() {
     context.restore();
     context.fillStyle = "#0D572A";
     const boardW = canvas.width * 0.42;
-    const boardH = canvas.height * 0.34;
+    const boardH = canvas.height * 0.38;
     const boardX = canvas.width - boardW - 40;
     const boardY = canvas.height - boardH - 40;
 
@@ -192,9 +192,10 @@ function App() {
 
     context.fillText(`現場名 ${selectedProject.siteName}`, boardX + 24, boardY + 48);
     context.fillText(`案件名 ${selectedProject.projectName}`, boardX + 24, boardY + 92);
+    context.fillText(`作業日 ${selectedProject.date}`, boardX + 18, boardY + 118);
 
     context.font = "bold 28px sans-serif";
-    context.fillText(shootingPhoto.name, boardX + 24, boardY + 150);
+    context.fillText(shootingPhoto.name, boardX + 18, boardY + 160);
     const image = canvas.toDataURL("image/jpeg", 0.9);
   
     setCapturedImage(image);
