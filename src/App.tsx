@@ -84,6 +84,7 @@ function App() {
   const [editProjectName, setEditProjectName] = useState("");
   const [editMembers, setEditMembers] = useState<string[]>([]);
   const [editCar, setEditCar] = useState("");
+  const [capturedImage, setCapturedImage] = useState("");
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -152,6 +153,7 @@ function App() {
       if (context) {
         context.drawImage(video, 0, 0);
         capturedImage = canvas.toDataURL("image/jpeg");
+        setCapturedImage(capturedImage);
       }
     }
 
@@ -413,11 +415,9 @@ if (editingProject) {
         </div>
 
         <div className="cameraPreview">
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            muted
+          <img
+            src={capturedImage}
+            alt=""
             className="cameraVideo"
           />
           <div className="digitalBoard">
